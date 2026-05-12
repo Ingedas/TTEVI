@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingedás · Comparador · Promocion y Fomento Turistico S.L.</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #101010;
+    background: #ffffff;
+    line-height: 1.7;
+  }
+
+  /* ═══════════════ COVER ═══════════════ */
+  .cover {
+    background: #fcdb50;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .cover-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #101010;
+    padding-bottom: 16px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .cover-body { margin: auto 0; }
+  .cover-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #6b5c00;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .cover-title {
+    font-size: clamp(56px, 9vw, 100px);
+    font-weight: 300;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .cover-subtitle {
+    font-size: 26px;
+    font-weight: 300;
+    margin-top: 12px;
+    color: #3a3000;
+  }
+  .cover-client-box {
+    background: rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 20px 28px;
+    margin-top: 40px;
+    display: inline-block;
+  }
+  .cover-client-box .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #5a4e00;
+    margin-bottom: 4px;
+  }
+  .cover-client-box .client-name { font-size: 22px; font-weight: 500; }
+  .cover-client-box .client-meta { font-size: 12px; color: #4a4000; margin-top: 4px; }
+  .cover-footer {
+    border-top: 1px solid rgba(0,0,0,0.2);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #5a4e00;
+  }
+  .cover-watermark {
+    position: absolute;
+    right: -30px;
+    bottom: -20px;
+    font-size: 220px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    line-height: 1;
+    writing-mode: vertical-rl;
+    letter-spacing: -8px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 56px 56px; }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #101010;
+    border-bottom: 1px solid #101010;
+    padding: 8px 0;
+    margin-bottom: 48px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  h1.page-title { font-size: 46px; font-weight: 300; line-height: 1.1; margin-bottom: 12px; }
+
+  .client-meta-bar {
+    background: #101010;
+    color: #fcdb50;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 16px 0 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .client-meta-bar .cups-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #c6c5c6; }
+  .client-meta-bar .right-info { font-size: 11px; color: #c6c5c6; text-align: right; }
+
+  p { font-size: 14px; color: #333; margin-bottom: 12px; }
+
+  h2.section-title {
+    font-size: 24px;
+    font-weight: 300;
+    margin: 44px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #fcdb50;
+  }
+
+  /* ═══ COMPARADOR ═══ */
+  .comparador-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0;
+  }
+  .comp-col { border-radius: 10px; overflow: hidden; }
+  .comp-col-header { padding: 16px 20px; font-weight: 600; font-size: 13px; letter-spacing: 0.5px; }
+  .comp-col.current .comp-col-header { background: #e8e8e8; color: #444; }
+  .comp-col.proposed .comp-col-header { background: #101010; color: #fcdb50; }
+  .comp-col.current .comp-col-header .brand { color: #888; font-weight: 300; font-size: 11px; }
+  .comp-col.proposed .comp-col-header .brand { color: #c6c5c6; font-weight: 300; font-size: 11px; }
+  .comp-body { background: #f8f8f8; }
+  .comp-section-title { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; padding: 10px 16px 4px; color: #999; font-weight: 600; }
+  .comp-row { display: grid; grid-template-columns: 36px 1fr 1fr; font-size: 12px; padding: 6px 16px; border-bottom: 1px solid #e8e8e8; align-items: center; }
+  .comp-row .period { font-weight: 600; color: #888; }
+  .comp-row .rate { color: #aaa; font-size: 11px; }
+  .comp-row .amount { text-align: right; font-weight: 500; }
+  .comp-subtotal { display: flex; justify-content: space-between; padding: 8px 16px; font-weight: 600; font-size: 12px; background: #e8e8e8; color: #333; }
+  .comp-subtotal.proposed-st { background: #1a1a1a; color: #fcdb50; }
+  .comp-extra-row { display: flex; justify-content: space-between; padding: 6px 16px; font-size: 12px; border-bottom: 1px solid #e8e8e8; color: #444; }
+  .comp-extra-row.neutral { color: #888; }
+  .comp-extra-row.highlight-good { color: #27ae60; font-weight: 500; }
+  .comp-extra-row.highlight-same { color: #888; font-style: italic; }
+  .comp-total { display: flex; justify-content: space-between; padding: 14px 16px; font-weight: 700; font-size: 18px; }
+  .comp-col.current .comp-total { background: #d0d0d0; }
+  .comp-col.proposed .comp-total { background: #fcdb50; }
+
+  /* Nota periodos sin consumo */
+  .comp-row.empty-period .rate { color: #ccc; font-style: italic; }
+  .comp-row.empty-period .amount { color: #bbb; }
+  .comp-row.empty-period .period { color: #ccc; }
+
+  /* ═══ AHORRO HERO ═══ */
+  .ahorro-section {
+    background: #101010;
+    border-radius: 12px;
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin: 32px 0;
+    text-align: center;
+  }
+  .ahorro-item { padding: 0 24px; border-right: 1px solid #333; }
+  .ahorro-item:last-child { border-right: none; }
+  .ahorro-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #c6c5c6; margin-bottom: 8px; }
+  .ahorro-value { font-size: 42px; font-weight: 700; color: #fcdb50; line-height: 1; }
+  .ahorro-sub { font-size: 12px; color: #666; margin-top: 6px; }
+
+  /* ═══ VISUAL BARS ═══ */
+  .visual-compare { margin: 32px 0; }
+  .vis-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .vis-label { width: 120px; font-size: 12px; font-weight: 600; text-align: right; color: #555; flex-shrink: 0; }
+  .vis-bar-wrap { flex: 1; background: #eee; border-radius: 6px; height: 36px; overflow: hidden; }
+  .vis-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 14px; font-size: 14px; font-weight: 600; color: white; min-width: 80px; }
+  .vis-bar.current-bar { background: #555; }
+  .vis-bar.proposed-bar { background: #101010; color: #fcdb50; }
+  .vis-saving-pill { background: #fcdb50; color: #101010; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+
+  /* ═══ DESGLOSE AHORRO POR PERIODO ═══ */
+  .periodo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .periodo-card {
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 18px 20px;
+    border-left: 4px solid #fcdb50;
+  }
+  .periodo-card .pc-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .periodo-card .pc-periodo { font-size: 20px; font-weight: 700; color: #101010; }
+  .periodo-card .pc-kwh { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .periodo-card .pc-actual { font-size: 12px; color: #888; }
+  .periodo-card .pc-oferta { font-size: 12px; color: #27ae60; font-weight: 600; }
+  .periodo-card .pc-ahorro { font-size: 16px; font-weight: 700; color: #27ae60; margin-top: 6px; }
+
+  /* ═══ NOTA PIE ═══ */
+  .footnote { font-size: 11px; color: #999; margin-top: 16px; padding: 12px 16px; background: #f8f8f8; border-radius: 6px; border-left: 3px solid #e0e0e0; }
+
+  /* ═══ FOOTER ═══ */
+  footer {
+    background: #101010;
+    color: #c6c5c6;
+    padding: 32px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+  footer .brand { color: #fcdb50; font-weight: 500; letter-spacing: 1px; }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 640px) {
+    .page { padding: 32px 20px; }
+    h1.page-title { font-size: 32px; }
+    .comparador-grid { grid-template-columns: 1fr; }
+    .ahorro-section { grid-template-columns: 1fr; padding: 28px 24px; gap: 20px; }
+    .ahorro-item { border-right: none; border-bottom: 1px solid #333; padding: 0 0 20px; }
+    .ahorro-item:last-child { border-bottom: none; }
+    .ahorro-value { font-size: 36px; }
+    .periodo-grid { grid-template-columns: 1fr; }
+    .vis-label { width: 80px; font-size: 11px; }
+    footer { flex-direction: column; gap: 16px; padding: 24px 20px; text-align: center; }
+    .client-meta-bar { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+
+  @media print {
+    .page { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════ COVER ══════ -->
+<div class="cover">
+  <div class="cover-brand">
+    <span>Ingedás</span>
+    <span>Estudio de Electricidad · 2026</span>
+  </div>
+  <div class="cover-body">
+    <div class="cover-eyebrow">Propuesta de optimización energética</div>
+    <div class="cover-title">Estudio<br>Eléctrico</div>
+    <div class="cover-subtitle">Análisis · Comparativa · Ahorro</div>
+    <div class="cover-client-box">
+      <div class="label">Cliente</div>
+      <div class="client-name">Promocion y Fomento Turistico, S.L.</div>
+      <div class="client-meta">CIF A03300464 · Orihuela, Alicante · Tarifa 3.0TD</div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <div>Fecha de emisión: 12 de mayo de 2026</div>
+    <div>Válido hasta: 26 de mayo de 2026</div>
+  </div>
+  <div class="cover-watermark">ingedás</div>
+</div>
+
+
+<div class="page">
+  <div class="page-header">
+    <span>Ingedás · Estudio de Electricidad</span>
+    <span>Comparativa de Tarifas</span>
+  </div>
+
+  <h1 class="page-title">Comparativa<br>de Tarifas</h1>
+
+  <div class="client-meta-bar">
+    <div>
+      <div class="cups-label">Cliente · CUPS del punto de suministro</div>
+      Promocion y Fomento Turistico S.L. &nbsp;·&nbsp; ES0021000016291295BR
+    </div>
+    <div class="right-info">
+      Calle La Feria, 1 · 03189 Orihuela (Alicante)<br>
+      Tarifa 3.0TD · 35 kW · CIF A03300464
+    </div>
+  </div>
+
+  <p style="margin-top:20px;">Análisis basado en la factura de <strong>marzo 2026 (31 días)</strong>, extrapolado a consumo anual. Coste actual con Acciona Green Energy frente a la propuesta de Ingedás con <strong>precio fijo anual</strong>. Los peajes ATR (energía y potencia) son regulados por BOE e idénticos en ambos contratos.</p>
+
+  <!-- COMPARADOR -->
+  <h2 class="section-title">Comparativa Anual · Término de Energía</h2>
+
+  <div class="comparador-grid">
+
+    <!-- COLUMNA ACTUAL -->
+    <div class="comp-col current">
+      <div class="comp-col-header">
+        Tarifa Actual
+        <div class="brand">Acciona Green Energy Developments</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-section-title">Energía comercial (€/kWh)</div>
+        <div class="comp-row empty-period">
+          <span class="period">P1</span>
+          <span class="rate">sin consumo registrado</span>
+          <span class="amount" style="color:#ccc;">— €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P2</span>
+          <span class="rate">31.343 kWh · 0,159071</span>
+          <span class="amount">4.985,76 €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P3</span>
+          <span class="rate">17.073 kWh · 0,144456</span>
+          <span class="amount">2.466,30 €</span>
+        </div>
+        <div class="comp-row empty-period">
+          <span class="period">P4</span>
+          <span class="rate">sin consumo registrado</span>
+          <span class="amount" style="color:#ccc;">— €</span>
+        </div>
+        <div class="comp-row empty-period">
+          <span class="period">P5</span>
+          <span class="rate">sin consumo registrado</span>
+          <span class="amount" style="color:#ccc;">— €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P6</span>
+          <span class="rate">30.837 kWh · 0,140876</span>
+          <span class="amount">4.344,19 €</span>
+        </div>
+        <div class="comp-subtotal"><span>Subtotal Energía Comercial</span><span>11.796,25 €</span></div>
+
+        <div class="comp-section-title">Peajes ATR energía (regulados · BOE)</div>
+        <div class="comp-row">
+          <span class="period">P2</span>
+          <span class="rate">31.343 kWh · 0,038914</span>
+          <span class="amount">1.219,68 €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P3</span>
+          <span class="rate">17.073 kWh · 0,019279</span>
+          <span class="amount">329,15 €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P6</span>
+          <span class="rate">30.837 kWh · 0,002898</span>
+          <span class="amount">89,37 €</span>
+        </div>
+        <div class="comp-subtotal"><span>Subtotal ATR Energía</span><span>1.638,20 €</span></div>
+
+        <div class="comp-section-title">Otros conceptos</div>
+        <div class="comp-extra-row neutral"><span>Impuesto Eléctrico (1 €/MWh · RDL 7/2026)</span><span>79,25 €</span></div>
+        <div class="comp-extra-row"><span style="font-weight:600;">Base Imponible</span><span style="font-weight:600;">13.513,70 €</span></div>
+        <div class="comp-extra-row"><span>IVA (21%)</span><span>2.837,88 €</span></div>
+      </div>
+      <div class="comp-total"><span>Total Anual</span><span>16.351,58 €</span></div>
+    </div>
+
+    <!-- COLUMNA OFERTA -->
+    <div class="comp-col proposed">
+      <div class="comp-col-header">
+        Propuesta Ingedás
+        <div class="brand">Precio fijo · Permanencia 12 meses</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-section-title">Energía comercial (€/kWh)</div>
+        <div class="comp-row empty-period">
+          <span class="period" style="color:#555;">P1</span>
+          <span class="rate">sin consumo registrado</span>
+          <span class="amount" style="color:#555;">— €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P2</span>
+          <span class="rate">31.343 kWh · 0,149428</span>
+          <span class="amount">4.683,52 €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P3</span>
+          <span class="rate">17.073 kWh · 0,122372</span>
+          <span class="amount">2.089,26 €</span>
+        </div>
+        <div class="comp-row empty-period">
+          <span class="period" style="color:#555;">P4</span>
+          <span class="rate">sin consumo registrado</span>
+          <span class="amount" style="color:#555;">— €</span>
+        </div>
+        <div class="comp-row empty-period">
+          <span class="period" style="color:#555;">P5</span>
+          <span class="rate">sin consumo registrado</span>
+          <span class="amount" style="color:#555;">— €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P6</span>
+          <span class="rate">30.837 kWh · 0,104532</span>
+          <span class="amount">3.223,45 €</span>
+        </div>
+        <div class="comp-subtotal proposed-st"><span>Subtotal Energía Comercial</span><span>9.996,23 €</span></div>
+
+        <div class="comp-section-title">Peajes ATR energía (regulados · BOE)</div>
+        <div class="comp-row">
+          <span class="period">P2</span>
+          <span class="rate">31.343 kWh · 0,038914</span>
+          <span class="amount">1.219,68 €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P3</span>
+          <span class="rate">17.073 kWh · 0,019279</span>
+          <span class="amount">329,15 €</span>
+        </div>
+        <div class="comp-row">
+          <span class="period">P6</span>
+          <span class="rate">30.837 kWh · 0,002898</span>
+          <span class="amount">89,37 €</span>
+        </div>
+        <div class="comp-subtotal proposed-st"><span>Subtotal ATR Energía</span><span>1.638,20 €</span></div>
+
+        <div class="comp-section-title">Otros conceptos</div>
+        <div class="comp-extra-row neutral"><span>Impuesto Eléctrico (1 €/MWh · RDL 7/2026)</span><span>79,25 €</span></div>
+        <div class="comp-extra-row highlight-good"><span style="font-weight:600;">Base Imponible</span><span style="font-weight:600;">11.713,68 €</span></div>
+        <div class="comp-extra-row"><span>IVA (21%)</span><span>2.459,87 €</span></div>
+      </div>
+      <div class="comp-total"><span>Total Anual</span><span>14.173,55 €</span></div>
+    </div>
+
+  </div><!-- /comparador-grid -->
+
+  <div class="footnote">
+    * Consumos anuales extrapolados proporcionalmente desde la factura de marzo 2026 (31 días · 6.731 kWh). P1, P4 y P5 sin consumo registrado en el periodo analizado. El término de potencia (BOE) y el alquiler de contador son idénticos en ambos contratos y no se incluyen en la comparativa al no generar diferencia de coste.
+  </div>
+
+  <!-- AHORRO HERO -->
+  <h2 class="section-title">Resumen del Ahorro</h2>
+
+  <div class="ahorro-section">
+    <div class="ahorro-item">
+      <div class="ahorro-label">Ahorro en energía comercial</div>
+      <div class="ahorro-value">1.800 €</div>
+      <div class="ahorro-sub">Reducción directa en precio de kWh</div>
+    </div>
+    <div class="ahorro-item">
+      <div class="ahorro-label">Ahorro anual total (con IVA)</div>
+      <div class="ahorro-value">2.178 €</div>
+      <div class="ahorro-sub">Proyección anual base factura marzo</div>
+    </div>
+    <div class="ahorro-item">
+      <div class="ahorro-label">Reducción sobre factura</div>
+      <div class="ahorro-value">13,3%</div>
+      <div class="ahorro-sub">Con precio fijo garantizado</div>
+    </div>
+  </div>
+
+  <!-- BARRA VISUAL -->
+  <div class="visual-compare">
+    <div class="vis-row">
+      <div class="vis-label">Acciona</div>
+      <div class="vis-bar-wrap">
+        <div class="vis-bar current-bar" style="width:100%;">16.352 €/año</div>
+      </div>
+      <div style="width:90px;"></div>
+    </div>
+    <div class="vis-row">
+      <div class="vis-label">Ingedás</div>
+      <div class="vis-bar-wrap">
+        <div class="vis-bar proposed-bar" style="width:86.7%;">14.174 €/año</div>
+      </div>
+      <div class="vis-saving-pill">−13,3%</div>
+    </div>
+  </div>
+
+  <!-- DESGLOSE POR PERIODO -->
+  <h2 class="section-title">¿Dónde se genera el ahorro?</h2>
+
+  <div class="periodo-grid">
+    <div class="periodo-card">
+      <div class="pc-label">Periodo 2 · Llano</div>
+      <div class="pc-periodo">P2</div>
+      <div class="pc-kwh">31.343 kWh/año</div>
+      <div class="pc-actual">Acciona: 0,159071 €/kWh</div>
+      <div class="pc-oferta">Ingedás: 0,149428 €/kWh (−6,1%)</div>
+      <div class="pc-ahorro">Ahorro: 302 €/año</div>
+    </div>
+    <div class="periodo-card">
+      <div class="pc-label">Periodo 3 · Llano</div>
+      <div class="pc-periodo">P3</div>
+      <div class="pc-kwh">17.073 kWh/año</div>
+      <div class="pc-actual">Acciona: 0,144456 €/kWh</div>
+      <div class="pc-oferta">Ingedás: 0,122372 €/kWh (−15,3%)</div>
+      <div class="pc-ahorro">Ahorro: 377 €/año</div>
+    </div>
+    <div class="periodo-card">
+      <div class="pc-label">Periodo 6 · Valle</div>
+      <div class="pc-periodo">P6</div>
+      <div class="pc-kwh">30.837 kWh/año</div>
+      <div class="pc-actual">Acciona: 0,140876 €/kWh</div>
+      <div class="pc-oferta">Ingedás: 0,104532 €/kWh (−25,8%)</div>
+      <div class="pc-ahorro">Ahorro: 1.121 €/año</div>
+    </div>
+  </div>
+
+  <div class="footnote" style="margin-top:8px;">
+    El mayor impacto del ahorro se concentra en <strong>P6 (Valle nocturno)</strong>, que representa el 38,9% del consumo total. La reducción de 0,1409 a 0,1045 €/kWh supone −25,8% en ese periodo y genera más de la mitad del ahorro total anual.
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <div>
+    <div class="brand">Ingedás · Servicios Ingedás, S.L</div>
+    <div style="margin-top:4px;">Avda. Del Mar 10 · 03300 Orihuela (Alicante) · B06816938</div>
+    <div style="margin-top:2px;">administracion@ingedas.es · www.ingedas.com · 626 119 254</div>
+  </div>
+  <div style="text-align:right;font-size:11px;color:#555;">
+    <div>Análisis basado en factura IPN26000066852</div>
+    <div style="margin-top:4px;color:#fcdb50;">Promocion y Fomento Turistico S.L.</div>
+    <div style="margin-top:8px;font-size:10px;color:#444;">Documento confidencial · uso exclusivo del destinatario</div>
+  </div>
+</footer>
+
+</body>
+</html>
